@@ -1,0 +1,237 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/themify-icons/0.1.2/css/themify-icons.min.css">
+
+<style>
+:root{
+  --border-radius-lg:12px;
+  --border-radius-md:8px;
+
+  --color-background-primary:#ffffff;
+  --color-background-secondary:#f6f7fb;
+  --color-background-info:#eef7ff;
+  --color-background-success:#e6f9ee;
+  --color-background-danger:#fff0f0;
+  --color-background-warning:#fff7e6;
+
+  --color-border-tertiary:#e6e8ef;
+  --color-border-secondary:#dfe3ee;
+  --color-border-info:#cfe9ff;
+  --color-border-success:#c6efd8;
+  --color-border-danger:#ffd6d6;
+  --color-border-warning:#ffe6b8;
+
+  --color-text-primary:#0f1724;
+  --color-text-secondary:#475569;
+  --color-text-info:#0966d2;
+  --color-text-success:#027a48;
+  --color-text-danger:#b91c1c;
+  --color-text-warning:#92400e;
+}
+</style>
+
+<style>
+.lp-hdr{padding:1rem 1.25rem;background:var(--color-background-info);border:0.5px solid var(--color-border-info);border-radius:var(--border-radius-lg);margin:0 0 1rem}
+.lp-hdr h1{font-size:16px;font-weight:500;color:var(--color-text-info);margin:0 0 2px}
+.lp-hdr p{font-size:13px;color:var(--color-text-info);opacity:.8;margin:0}
+.lp-tabs{display:flex;gap:8px;margin:0 0 1rem}
+.lp-tab{flex:1;padding:9px 6px;border-radius:var(--border-radius-md);font-size:12px;font-weight:500;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);cursor:pointer;transition:all .15s;text-align:center;display:flex;align-items:center;justify-content:center;gap:5px;line-height:1.3}
+.lp-tab.aw{background:var(--color-background-success);color:var(--color-text-success);border-color:var(--color-border-success)}
+.lp-tab.al{background:var(--color-background-danger);color:var(--color-text-danger);border-color:var(--color-border-danger)}
+.lp-path{display:none}
+.lp-path.on{display:block}
+.lp-badge{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:var(--border-radius-lg);margin:0 0 1rem;border:0.5px solid var(--color-border-tertiary)}
+.lp-badge.bw{background:var(--color-background-success);border-color:var(--color-border-success)}
+.lp-badge.bl{background:var(--color-background-danger);border-color:var(--color-border-danger)}
+.lp-bico{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px}
+.bw .lp-bico{background:var(--color-background-success);color:var(--color-text-success)}
+.bl .lp-bico{background:var(--color-background-danger);color:var(--color-text-danger)}
+.lp-badge h3{font-size:13px;font-weight:500;margin:0 0 2px;color:var(--color-text-primary)}
+.lp-badge p{font-size:12px;color:var(--color-text-secondary);margin:0}
+.lp-stk{display:flex;flex-direction:column;gap:10px}
+.lp-card{background:var(--color-background-primary);border-radius:var(--border-radius-lg);border:0.5px solid var(--color-border-tertiary);padding:12px 14px}
+.lp-card.dw{background:var(--color-background-success);border-color:var(--color-border-success);opacity:.8}
+.lp-card.dl{background:var(--color-background-danger);border-color:var(--color-border-danger);opacity:.8}
+.lp-card.ac{border:1.5px solid var(--color-border-info)}
+@keyframes lpin{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:translateY(0)}}
+.lp-card.rv,.lp-out.rv{animation:lpin .25s ease}
+.lp-ctop{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0 0 8px}
+.lp-gnum{font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;background:var(--color-background-info);color:var(--color-text-info);white-space:nowrap}
+.lp-gcmt{font-size:11px;color:var(--color-text-secondary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.lp-teams{font-size:15px;font-weight:500;color:var(--color-text-primary);margin:0 0 2px}
+.lp-vs{color:var(--color-text-secondary);font-weight:400;font-size:13px}
+.lp-note{font-size:12px;color:var(--color-text-secondary);margin:0 0 8px}
+.lp-meta{display:flex;flex-direction:column;gap:3px;margin:0 0 10px}
+.lp-meta span{font-size:12px;color:var(--color-text-secondary);display:flex;align-items:center;gap:4px}
+.lp-meta a{color:var(--color-text-info);text-decoration:none;font-size:12px}
+.lp-meta i{font-size:14px;flex-shrink:0}
+.lp-btns{display:flex;gap:8px}
+.lpbw,.lpbl{flex:1;padding:9px 8px;border-radius:var(--border-radius-md);font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;transition:opacity .15s}
+.lpbw{background:var(--color-background-success);color:var(--color-text-success);border:0.5px solid var(--color-border-success)}
+.lpbl{background:var(--color-background-danger);color:var(--color-text-danger);border:0.5px solid var(--color-border-danger)}
+.lpbw:hover,.lpbl:hover{opacity:.75}
+.lp-chip{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:500;padding:3px 10px;border-radius:20px}
+.lp-chip.cw{background:var(--color-background-success);color:var(--color-text-success)}
+.lp-chip.cl{background:var(--color-background-danger);color:var(--color-text-danger)}
+.lp-out{border-radius:var(--border-radius-lg);border:0.5px solid var(--color-border-tertiary);padding:1.25rem;text-align:center}
+.lp-out.og{background:var(--color-background-warning);border-color:var(--color-border-warning)}
+.lp-out.ob{background:var(--color-background-info);border-color:var(--color-border-info)}
+.lp-out.on{background:var(--color-background-secondary)}
+.lp-out.or{background:var(--color-background-danger);border-color:var(--color-border-danger)}
+.lp-oico{font-size:24px;margin:0 0 8px;color:var(--color-text-warning)}
+.lp-out.ob .lp-oico{color:var(--color-text-info)}
+.lp-out.on .lp-oico{color:var(--color-text-secondary)}
+.lp-out.or .lp-oico{color:var(--color-text-danger)}
+.lp-opl{font-size:18px;font-weight:500;margin:0 0 4px;color:var(--color-text-warning)}
+.lp-out.ob .lp-opl{color:var(--color-text-info)}
+.lp-out.on .lp-opl{color:var(--color-text-primary)}
+.lp-out.or .lp-opl{color:var(--color-text-danger)}
+.lp-odet{font-size:12px;color:var(--color-text-secondary)}
+.lp-rst{display:flex;width:100%;margin:10px 0 0;padding:9px;border-radius:var(--border-radius-md);font-size:13px;font-weight:500;color:var(--color-text-secondary);background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);cursor:pointer;align-items:center;justify-content:center;gap:6px}
+.lp-rst:hover{background:var(--color-background-primary);color:var(--color-text-primary)}
+</style>
+
+<div class="lp-hdr">
+  <h1>Loyola Water Polo Club 16U Path Predictor</h1>
+  <p>CCA JOQs 2026 · tap Win or Lose on each game to trace your path</p>
+</div>
+
+<div class="lp-tabs">
+  <button class="lp-tab" id="tb-win" onclick="swTab('win')">
+    <i class="ti ti-trophy" aria-hidden="true"></i> Win vs Foothill A
+  </button>
+  <button class="lp-tab" id="tb-lose" onclick="swTab('lose')">
+    <i class="ti ti-x" aria-hidden="true"></i> Lose vs Foothill A
+  </button>
+</div>
+
+<div id="ph-win" class="lp-path">
+  <div class="lp-badge bw">
+    <div class="lp-bico"><i class="ti ti-check" aria-hidden="true"></i></div>
+    <div>
+      <h3>Game #11 — Won vs Foothill Red (A)</h3>
+      <p>Friday, May 29 · 2:40 PM · Ventura Aquatic Center</p>
+    </div>
+  </div>
+  <div class="lp-stk" id="sk-win"></div>
+</div>
+
+<div id="ph-lose" class="lp-path">
+  <div class="lp-badge bl">
+    <div class="lp-bico"><i class="ti ti-x" aria-hidden="true"></i></div>
+    <div>
+      <h3>Game #11 — Lost vs Foothill Red (A)</h3>
+      <p>Friday, May 29 · 2:40 PM · Ventura Aquatic Center</p>
+    </div>
+  </div>
+  <div class="lp-stk" id="sk-lose"></div>
+</div>
+
+<script>
+const T = {
+  win:{root:'g14',nodes:{
+    g14:{id:'g14',game:14,day:'Friday, May 29',time:'5:10 PM',venue:'Ventura Aquatic Center (VAC)',maps:'https://maps.google.com/?q=901+S+Kimball+Rd+Ventura+CA+93004',vs:'Winner #10',note:'Rose Bowl Red (A) or Trojan Silver (C)',cmt:'Pool E semifinal',win:'g30',lose:'g28'},
+    g28:{id:'g28',game:28,day:'Saturday, May 30',time:'11:00 AM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'1st Pool F',note:'Palos Verdes Black (A) or ORWP',cmt:'Cross 1-2 (as 2nd pool E)',win:'g31',lose:'g32'},
+    g30:{id:'g30',game:30,day:'Saturday, May 30',time:'1:00 PM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'2nd Pool F',note:'ORWP, Foothill Black (B), or Rose Bowl White (C)',cmt:'Cross 1-2 (as 1st pool E)',win:'g33',lose:'g34'},
+    g31:{id:'g31',game:31,day:'Saturday, May 30',time:'2:00 PM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'Winner #27',note:'1st Pool C or 2nd Pool D area',cmt:'1-8 quarterfinal',win:'rtop4',lose:'r58'},
+    g32:{id:'g32',game:32,day:'Saturday, May 30',time:'3:00 PM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'Loser #28',note:'9-16 bracket',cmt:'9-16 quarterfinal',win:'r912',lose:'r1316'},
+    g33:{id:'g33',game:33,day:'Saturday, May 30',time:'4:00 PM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'Winner #29',note:'1st Pool D or 2nd Pool C area',cmt:'1-8 quarterfinal',win:'rtop4',lose:'r58'},
+    g34:{id:'g34',game:34,day:'Saturday, May 30',time:'5:00 PM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'Loser #29',note:'9-16 bracket',cmt:'9-16 quarterfinal',win:'r912',lose:'r1316'},
+    rtop4:{type:'result',col:'og',ico:'ti-trophy',place:'Top 4 contender!',det:'Sunday round robin at Rio Mesa HS — competing for 1st–4th place'},
+    r58:{type:'result',col:'ob',ico:'ti-medal',place:'5th–8th place',det:'Sunday round robin at Camarillo HS'},
+    r912:{type:'result',col:'on',ico:'ti-target',place:'9th–12th place',det:'Sunday semifinals at Rio Mesa HS'},
+    r1316:{type:'result',col:'on',ico:'ti-flag-off',place:'13th–16th place',det:'Sunday semifinals at Camarillo HS'}
+  }},
+  lose:{root:'g35',nodes:{
+    g35:{id:'g35',game:35,day:'Saturday, May 30',time:'8:00 AM',venue:'Rio Mesa High School',maps:'https://maps.google.com/?q=545+Central+Ave+Oxnard+CA+93036',vs:'Trojan Silver (C)',note:'Loser of Game #10 — Rose Bowl Red (A) or Trojan Silver (C)',cmt:'Bracket E opener',win:'g48',lose:'r2531'},
+    g48:{id:'g48',game:48,day:'Saturday, May 30',time:'12:00 PM',venue:'Hueneme High School',maps:'https://maps.google.com/?q=500+W+Bard+Rd+Oxnard+CA+93033',vs:'3rd Pool D (winner #36)',note:'Rose Bowl Black (B) or Titans Water Polo',cmt:'17–24 quarterfinal',win:'g51',lose:'g53'},
+    g51:{id:'g51',game:51,day:'Saturday, May 30',time:'3:00 PM',venue:'Hueneme High School',maps:'https://maps.google.com/?q=500+W+Bard+Rd+Oxnard+CA+93033',vs:'Winner #47',note:"Supreme, Devil's Gate, LV Legends, or PAC Blue",cmt:'17–20 semifinal',win:'g89',lose:'g88'},
+    g53:{id:'g53',game:53,day:'Saturday, May 30',time:'5:00 PM',venue:'Hueneme High School',maps:'https://maps.google.com/?q=500+W+Bard+Rd+Oxnard+CA+93033',vs:'Loser #47',note:'21st–24th bracket',cmt:'21–24 semifinal',win:'r21',lose:'r23'},
+    g88:{id:'g88',game:88,day:'Sunday, May 31',time:'4:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'Loser #52',note:'19th–20th bracket',cmt:'19th place game',win:'r19',lose:'r20'},
+    g89:{id:'g89',game:89,day:'Sunday, May 31',time:'5:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'Winner #52',note:'South Coast B, Santa Barbara B, PV B, or South Coast C',cmt:'17th place game',win:'r17',lose:'r18'},
+    r17:{type:'result',col:'og',ico:'ti-trophy',place:'17th place!',det:'Best possible finish — Ventura HS, Sunday May 31'},
+    r18:{type:'result',col:'ob',ico:'ti-medal',place:'18th place',det:'Ventura HS — Sunday, May 31'},
+    r19:{type:'result',col:'on',ico:'ti-target',place:'19th place',det:'Ventura HS — Sunday, May 31'},
+    r20:{type:'result',col:'on',ico:'ti-target',place:'20th place',det:'Ventura HS — Sunday, May 31'},
+    r21:{type:'result',col:'on',ico:'ti-flag-off',place:'21st–22nd place',det:'Ventura HS — Sunday, May 31'},
+    r23:{type:'result',col:'or',ico:'ti-flag-off',place:'23rd–24th place',det:'Ventura HS — Sunday, May 31'},
+    r2531:{type:'result',col:'or',ico:'ti-flag-off',place:'25th–31st place',det:'Ventura HS bracket'}
+  }}
+};
+
+const S = {win:{cur:'g14',dec:[]},lose:{cur:'g35',dec:[]}};
+
+function swTab(t) {
+  ['win','lose'].forEach(k=>{
+    document.getElementById('tb-'+k).className='lp-tab'+(k===t?(k==='win'?' aw':' al'):'');
+    document.getElementById('ph-'+k).className='lp-path'+(k===t?' on':'');
+  });
+}
+
+function pick(t,id,r){
+  const n=T[t].nodes[id];
+  S[t].dec.push({id,r});
+  S[t].cur=n[r];
+  draw(t);
+  setTimeout(()=>{
+    const el=document.getElementById('sk-'+t).lastElementChild;
+    el&&el.scrollIntoView({behavior:'smooth',block:'nearest'});
+  },120);
+}
+
+function reset(t){S[t].dec=[];S[t].cur=T[t].root;draw(t);}
+
+function xs(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
+
+function cardTop(n){
+  return `<div class="lp-ctop"><span class="lp-gnum">Game #${n.game}</span><span class="lp-gcmt">${xs(n.cmt)}</span></div>
+<div class="lp-teams">Loyola WP Club <span class="lp-vs">vs</span> ${xs(n.vs)}</div>
+<div class="lp-note">${xs(n.note)}</div>
+<div class="lp-meta">
+  <span><i class="ti ti-calendar" aria-hidden="true"></i>${xs(n.day)} · ${xs(n.time)}</span>
+  <span><i class="ti ti-map-pin" aria-hidden="true"></i><a href="${xs(n.maps)}" target="_blank">${xs(n.venue)}</a></span>
+</div>`;
+}
+
+function draw(t){
+  const stk=document.getElementById('sk-'+t);
+  const nodes=T[t].nodes;
+  const s=S[t];
+  let h='';
+
+  for(const {id,r} of s.dec){
+    const n=nodes[id];
+    if(!n||n.type==='result')continue;
+    const dc=r==='win'?'dw':'dl';
+    const chip=r==='win'
+      ?'<span class="lp-chip cw"><i class="ti ti-check" aria-hidden="true" style="font-size:12px"></i> won</span>'
+      :'<span class="lp-chip cl"><i class="ti ti-x" aria-hidden="true" style="font-size:12px"></i> lost</span>';
+    h+=`<div class="lp-card ${dc}">${cardTop(n)}${chip}</div>`;
+  }
+
+  const cur=nodes[s.cur];
+  if(!cur){
+    h+='<p style="font-size:13px;color:var(--color-text-secondary);padding:8px 0">Unknown state.</p>';
+  } else if(cur.type==='result'){
+    h+=`<div class="lp-out ${cur.col} rv">
+  <div class="lp-oico"><i class="ti ${cur.ico}" aria-hidden="true"></i></div>
+  <div class="lp-opl">${xs(cur.place)}</div>
+  <div class="lp-odet">${xs(cur.det)}</div>
+</div>
+<button class="lp-rst" onclick="reset('${t}')"><i class="ti ti-refresh" aria-hidden="true" style="font-size:14px"></i> try another path</button>`;
+  } else {
+    h+=`<div class="lp-card ac rv">
+  ${cardTop(cur)}
+  <div class="lp-btns">
+    <button class="lpbw" onclick="pick('${t}','${cur.id}','win')"><i class="ti ti-trophy" aria-hidden="true"></i> Win</button>
+    <button class="lpbl" onclick="pick('${t}','${cur.id}','lose')"><i class="ti ti-x" aria-hidden="true"></i> Lose</button>
+  </div>
+</div>`;
+    if(s.dec.length>0) h+=`<button class="lp-rst" onclick="reset('${t}')"><i class="ti ti-refresh" aria-hidden="true" style="font-size:14px"></i> reset path</button>`;
+  }
+
+  stk.innerHTML=h;
+}
+
+swTab('win');
+draw('win');
+draw('lose');
+</script>
