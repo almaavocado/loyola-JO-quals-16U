@@ -1,99 +1,275 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/themify-icons/0.1.2/css/themify-icons.min.css">
 
 <style>
+/* ── Base ── */
+html,body{margin:0;padding:0;background:#EEF2F8;font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;-webkit-font-smoothing:antialiased}
+
+/* ── Page wrapper ── */
+.lp-page{max-width:480px;margin:0 auto;padding:16px;min-height:100vh;box-sizing:border-box}
+
+/* ── CSS variables ── */
 :root{
-  --border-radius-lg:12px;
-  --border-radius-md:8px;
-
+  --border-radius-lg:20px;
+  --border-radius-md:14px;
   --color-background-primary:#ffffff;
-  --color-background-secondary:#f6f7fb;
-  --color-background-info:#eef7ff;
-  --color-background-success:#e6f9ee;
-  --color-background-danger:#fff0f0;
-  --color-background-warning:#fff7e6;
-
-  --color-border-tertiary:#e6e8ef;
-  --color-border-secondary:#dfe3ee;
-  --color-border-info:#cfe9ff;
-  --color-border-success:#c6efd8;
-  --color-border-danger:#ffd6d6;
-  --color-border-warning:#ffe6b8;
-
-  --color-text-primary:#0f1724;
-  --color-text-secondary:#475569;
-  --color-text-info:#0966d2;
-  --color-text-success:#027a48;
+  --color-background-secondary:#f1f5f9;
+  --color-background-info:#eff6ff;
+  --color-background-success:#f0fdf4;
+  --color-background-danger:#fef2f2;
+  --color-background-warning:#fffbeb;
+  --color-border-tertiary:#e2e8f0;
+  --color-border-secondary:#cbd5e1;
+  --color-border-info:#bfdbfe;
+  --color-border-success:#86efac;
+  --color-border-danger:#fca5a5;
+  --color-border-warning:#fde68a;
+  --color-text-primary:#0f172a;
+  --color-text-secondary:#64748b;
+  --color-text-info:#1d4ed8;
+  --color-text-success:#15803d;
   --color-text-danger:#b91c1c;
   --color-text-warning:#92400e;
 }
-</style>
 
-<style>
-.lp-hdr{padding:1rem 1.25rem;background:var(--color-background-info);border:0.5px solid var(--color-border-info);border-radius:var(--border-radius-lg);margin:0 0 1rem}
-.lp-hdr h1{font-size:16px;font-weight:500;color:var(--color-text-info);margin:0 0 2px}
-.lp-hdr p{font-size:13px;color:var(--color-text-info);opacity:.8;margin:0}
-.lp-tabs{display:flex;gap:8px;margin:0 0 1rem}
-.lp-tab{flex:1;padding:9px 6px;border-radius:var(--border-radius-md);font-size:12px;font-weight:500;border:0.5px solid var(--color-border-secondary);background:var(--color-background-primary);color:var(--color-text-secondary);cursor:pointer;transition:all .15s;text-align:center;display:flex;align-items:center;justify-content:center;gap:5px;line-height:1.3}
-.lp-tab.aw{background:var(--color-background-success);color:var(--color-text-success);border-color:var(--color-border-success)}
-.lp-tab.al{background:var(--color-background-danger);color:var(--color-text-danger);border-color:var(--color-border-danger)}
+/* ── Header ── */
+.lp-hdr{
+  background:linear-gradient(145deg,#0c1e4a 0%,#1a3a8a 55%,#0e2660 100%);
+  border-radius:24px;
+  padding:22px 20px;
+  margin:0 0 14px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 8px 32px rgba(12,30,74,.35),0 2px 8px rgba(12,30,74,.2);
+}
+.lp-hdr::before{
+  content:'';position:absolute;top:-60px;right:-40px;
+  width:220px;height:220px;border-radius:50%;
+  background:rgba(255,255,255,0.05);pointer-events:none;
+}
+.lp-hdr::after{
+  content:'';position:absolute;bottom:-80px;left:25%;
+  width:240px;height:240px;border-radius:50%;
+  background:rgba(59,130,246,0.08);pointer-events:none;
+}
+.lp-hdr-top{display:flex;align-items:center;gap:16px;position:relative}
+.lp-logo{
+  width:72px;height:72px;border-radius:50%;
+  background:rgba(255,255,255,0.1);
+  border:2px solid rgba(255,255,255,0.22);
+  padding:6px;object-fit:contain;flex-shrink:0;
+  box-shadow:0 0 0 5px rgba(255,255,255,0.06),0 8px 24px rgba(0,0,0,0.3);
+  backdrop-filter:blur(4px);
+}
+.lp-chip-head{
+  display:inline-flex;align-items:center;
+  padding:3px 11px;
+  background:rgba(251,191,36,0.18);
+  color:#FCD34D;
+  border:1px solid rgba(251,191,36,0.35);
+  border-radius:999px;
+  font-size:10px;font-weight:700;letter-spacing:.07em;text-transform:uppercase;
+  margin-bottom:7px;
+}
+.lp-hdr h1{margin:0;font-size:26px;font-weight:800;color:#fff;line-height:1.1}
+.lp-hdr h1 span{display:block;font-size:14px;font-weight:500;color:rgba(147,197,253,.85);margin-top:4px}
+.lp-hdr p{margin:10px 0 0;font-size:12.5px;color:rgba(186,230,253,.65);line-height:1.5;position:relative}
+
+/* ── Tabs ── */
+.lp-tabs{display:flex;gap:10px;margin:0 0 14px}
+.lp-tab{
+  flex:1;padding:13px 10px;border-radius:16px;
+  font-size:13px;font-weight:600;
+  border:1.5px solid #e2e8f0;
+  background:white;color:#64748b;
+  cursor:pointer;transition:all .2s;
+  display:flex;align-items:center;justify-content:center;gap:7px;
+  box-shadow:0 1px 4px rgba(0,0,0,0.07);
+  font-family:'Inter',sans-serif;
+}
+.lp-tab.aw{
+  background:linear-gradient(135deg,#f0fdf4,#dcfce7);
+  color:#2a9651;border-color:#86efac;
+  box-shadow:0 2px 10px rgba(21,128,61,.18);
+}
+.lp-tab.al{
+  background:linear-gradient(135deg,#fef2f2,#fee2e2);
+  color:#b91c1c;border-color:#fca5a5;
+  box-shadow:0 2px 10px rgba(185,28,28,.15);
+}
+
+/* ── Path visibility ── */
 .lp-path{display:none}
 .lp-path.on{display:block}
-.lp-badge{display:flex;align-items:center;gap:10px;padding:12px 14px;border-radius:var(--border-radius-lg);margin:0 0 1rem;border:0.5px solid var(--color-border-tertiary)}
-.lp-badge.bw{background:var(--color-background-success);border-color:var(--color-border-success)}
-.lp-badge.bl{background:var(--color-background-danger);border-color:var(--color-border-danger)}
-.lp-bico{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:15px}
-.bw .lp-bico{background:var(--color-background-success);color:var(--color-text-success)}
-.bl .lp-bico{background:var(--color-background-danger);color:var(--color-text-danger)}
-.lp-badge h3{font-size:13px;font-weight:500;margin:0 0 2px;color:var(--color-text-primary)}
-.lp-badge p{font-size:12px;color:var(--color-text-secondary);margin:0}
-.lp-stk{display:flex;flex-direction:column;gap:10px}
-.lp-card{background:var(--color-background-primary);border-radius:var(--border-radius-lg);border:0.5px solid var(--color-border-tertiary);padding:12px 14px}
-.lp-card.dw{background:var(--color-background-success);border-color:var(--color-border-success);opacity:.8}
-.lp-card.dl{background:var(--color-background-danger);border-color:var(--color-border-danger);opacity:.8}
-.lp-card.ac{border:1.5px solid var(--color-border-info)}
-@keyframes lpin{from{opacity:0;transform:translateY(-7px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── Badge (Game #11 result at top) ── */
+.lp-badge{
+  display:flex;align-items:center;gap:12px;
+  padding:14px 16px;border-radius:18px;margin:0 0 14px;
+  border:none;
+}
+.lp-badge.bw{
+  background:linear-gradient(145deg,#f0fdf4,#dcfce7);
+  box-shadow:0 4px 16px rgba(5,150,105,.2);
+}
+.lp-badge.bl{
+  background:linear-gradient(135deg,#fee2e2,#fecaca);
+  box-shadow:0 4px 16px rgba(185,28,28,.15);
+}
+.lp-bico{
+  width:40px;height:40px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;font-size:20px;font-weight:700;
+}
+.bw .lp-bico{background:rgba(5,150,105,.4);color:#fff}
+.bl .lp-bico{background:rgba(185,28,28,.3);color:#fff}
+.lp-badge h3{font-size:14px;font-weight:700;margin:0 0 2px;color:#0f172a}
+.lp-badge a{color:inherit;text-decoration:underline;text-underline-offset:2px;text-decoration-style:dashed;font-weight:600}
+.lp-badge a:hover{text-decoration-style:solid}
+.lp-badge p{font-size:12px;color:#475569;margin:0}
+
+/* ── Card stack ── */
+.lp-stk{display:flex;flex-direction:column;gap:12px}
+
+/* ── Game cards ── */
+.lp-card{
+  background:white;border-radius:20px;border:none;
+  padding:16px 18px;
+  box-shadow:0 2px 12px rgba(15,23,42,.07),0 1px 3px rgba(15,23,42,.04);
+}
+.lp-card.dw{
+  background:linear-gradient(145deg,#f0fdf4,#dcfce7);
+  box-shadow:0 2px 10px rgba(21,128,61,.1);
+}
+.lp-card.dl{
+  background:linear-gradient(145deg,#fef2f2,#fee2e2);
+  box-shadow:0 2px 10px rgba(185,28,28,.08);
+}
+.lp-card.dw{background:linear-gradient(145deg,#f0fdf4,#dcfce7);border:none;}
+.lp-card.dl{background:linear-gradient(145deg,#fef2f2,#fee2e2);border:none;}
+.lp-card.ac{
+  border:2px solid #a5b4fc;
+  box-shadow:0 4px 20px rgba(99,102,241,.15),0 1px 3px rgba(99,102,241,.08);
+}
+@keyframes lpin{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
 .lp-card.rv,.lp-out.rv{animation:lpin .25s ease}
-.lp-ctop{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0 0 8px}
-.lp-gnum{font-size:11px;font-weight:500;padding:2px 8px;border-radius:20px;background:var(--color-background-info);color:var(--color-text-info);white-space:nowrap}
-.lp-gcmt{font-size:11px;color:var(--color-text-secondary);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.lp-teams{font-size:15px;font-weight:500;color:var(--color-text-primary);margin:0 0 2px}
-.lp-vs{color:var(--color-text-secondary);font-weight:400;font-size:13px}
-.lp-note{font-size:12px;color:var(--color-text-secondary);margin:0 0 8px}
-.lp-meta{display:flex;flex-direction:column;gap:3px;margin:0 0 10px}
-.lp-meta span{font-size:12px;color:var(--color-text-secondary);display:flex;align-items:center;gap:4px}
-.lp-meta a{color:var(--color-text-info);text-decoration:none;font-size:12px}
-.lp-meta i{font-size:14px;flex-shrink:0}
-.lp-btns{display:flex;gap:8px}
-.lpbw,.lpbl{flex:1;padding:9px 8px;border-radius:var(--border-radius-md);font-size:13px;font-weight:500;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:5px;transition:opacity .15s}
-.lpbw{background:var(--color-background-success);color:var(--color-text-success);border:0.5px solid var(--color-border-success)}
-.lpbl{background:var(--color-background-danger);color:var(--color-text-danger);border:0.5px solid var(--color-border-danger)}
-.lpbw:hover,.lpbl:hover{opacity:.75}
-.lp-chip{display:inline-flex;align-items:center;gap:4px;font-size:12px;font-weight:500;padding:3px 10px;border-radius:20px}
-.lp-chip.cw{background:var(--color-background-success);color:var(--color-text-success)}
-.lp-chip.cl{background:var(--color-background-danger);color:var(--color-text-danger)}
-.lp-out{border-radius:var(--border-radius-lg);border:0.5px solid var(--color-border-tertiary);padding:1.25rem;text-align:center}
-.lp-out.og{background:var(--color-background-warning);border-color:var(--color-border-warning)}
-.lp-out.ob{background:var(--color-background-info);border-color:var(--color-border-info)}
-.lp-out.on{background:var(--color-background-secondary)}
-.lp-out.or{background:var(--color-background-danger);border-color:var(--color-border-danger)}
-.lp-oico{font-size:24px;margin:0 0 8px;color:var(--color-text-warning)}
-.lp-out.ob .lp-oico{color:var(--color-text-info)}
-.lp-out.on .lp-oico{color:var(--color-text-secondary)}
-.lp-out.or .lp-oico{color:var(--color-text-danger)}
-.lp-opl{font-size:18px;font-weight:500;margin:0 0 4px;color:var(--color-text-warning)}
-.lp-out.ob .lp-opl{color:var(--color-text-info)}
-.lp-out.on .lp-opl{color:var(--color-text-primary)}
-.lp-out.or .lp-opl{color:var(--color-text-danger)}
-.lp-odet{font-size:12px;color:var(--color-text-secondary)}
-.lp-rst{display:flex;width:100%;margin:10px 0 0;padding:9px;border-radius:var(--border-radius-md);font-size:13px;font-weight:500;color:var(--color-text-secondary);background:var(--color-background-secondary);border:0.5px solid var(--color-border-tertiary);cursor:pointer;align-items:center;justify-content:center;gap:6px}
-.lp-rst:hover{background:var(--color-background-primary);color:var(--color-text-primary)}
+
+/* ── Card internals ── */
+.lp-ctop{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:0 0 10px}
+.lp-gnum{
+  font-size:11px;font-weight:700;padding:3px 10px;border-radius:999px;
+  background:#eef2ff;color:#4338ca;white-space:nowrap;letter-spacing:.03em;
+}
+.lp-gcmt{font-size:11px;color:#94a3b8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:500}
+.lp-teams{font-size:17px;font-weight:700;color:#0f172a;margin:0 0 3px;line-height:1.3}
+.lp-vs{color:#94a3b8;font-weight:400;font-size:14px}
+.lp-note{font-size:12px;color:#64748b;margin:0 0 10px}
+.lp-meta{display:flex;flex-direction:row;flex-wrap:wrap;gap:6px 16px;margin:0 0 14px;align-items:center}
+.lp-meta span{font-size:12px;color:#64748b;display:flex;align-items:center;gap:6px}
+.lp-meta a{color:#2563eb;text-decoration:underline;text-underline-offset:2px;text-decoration-style:dashed;font-size:12px;font-weight:500}
+.lp-meta a:hover{text-decoration-style:solid}
+.lp-meta i{font-size:14px;flex-shrink:0;color:#94a3b8}.lp-meta span:last-child i{color:#2563eb}
+
+/* ── Win / Lose buttons ── */
+.lp-btns{display:flex;gap:10px}
+.lpbw,.lpbl{
+  flex:1;padding:13px 10px;border-radius:14px;
+  font-size:15px;font-weight:700;
+  cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;
+  transition:all .15s;border:none;
+  font-family:'Inter',sans-serif;letter-spacing:.01em;
+}
+.lpbw{
+  background:#f0fdf4;
+  color:#166534;
+  border:2px solid #86efac;
+  box-shadow:0 2px 10px rgba(134,239,172,.35);
+}
+.lpbl{
+  background:#fff1f2;
+  color:#9f1239;
+  border:2px solid #fda4af;
+  box-shadow:0 2px 10px rgba(253,164,175,.35);
+}
+.lpbw:hover{background:#dcfce7;border-color:#4ade80;transform:translateY(-1px);box-shadow:0 4px 14px rgba(74,222,128,.35)}
+.lpbl:hover{background:#ffe4e6;border-color:#fb7185;transform:translateY(-1px);box-shadow:0 4px 14px rgba(251,113,133,.35)}
+.lpbw:active,.lpbl:active{transform:translateY(0)}
+
+/* ── Won/Lost chip on history cards ── */
+.lp-chip{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:600;padding:4px 12px;border-radius:999px;margin-top:2px}
+.lp-chip.cw{background:rgba(21,128,61,.12);color:#15803d}
+.lp-chip.cl{background:rgba(185,28,28,.12);color:#b91c1c}
+
+/* ── Result card ── */
+.lp-out{border-radius:24px;border:none;padding:30px 20px 22px;text-align:center}
+.lp-out.og{background:linear-gradient(145deg,#fffbeb,#fef3c7);box-shadow:0 8px 32px rgba(245,158,11,.2)}
+.lp-out.ob{background:linear-gradient(145deg,#eff6ff,#dbeafe);box-shadow:0 8px 32px rgba(37,99,235,.15)}
+.lp-out.on{background:linear-gradient(145deg,#f8fafc,#f1f5f9);box-shadow:0 8px 32px rgba(0,0,0,.07)}
+.lp-out.or{background:linear-gradient(145deg,#fef2f2,#fee2e2);box-shadow:0 8px 32px rgba(185,28,28,.12)}
+.lp-oico{font-size:38px;margin:0 0 10px;color:#d97706}
+.lp-out.ob .lp-oico{color:#2563eb}
+.lp-out.on .lp-oico{color:#94a3b8}
+.lp-out.or .lp-oico{color:#dc2626}
+.lp-opl{font-size:24px;font-weight:800;margin:0 0 6px;color:#92400e;line-height:1.2}
+.lp-out.ob .lp-opl{color:#1d4ed8}
+.lp-out.on .lp-opl{color:#0f172a}
+.lp-out.or .lp-opl{color:#b91c1c}
+.lp-odet{font-size:13px;color:#64748b}
+
+/* ── Reset button ── */
+.lp-rst{
+  display:flex;width:100%;margin:12px 0 0;padding:12px;
+  border-radius:14px;font-size:14px;font-weight:600;
+  color:#64748b;background:white;
+  border:1.5px solid #e2e8f0;
+  cursor:pointer;align-items:center;justify-content:center;gap:7px;
+  transition:all .15s;
+  box-shadow:0 1px 4px rgba(0,0,0,.05);
+  font-family:'Inter',sans-serif;
+}
+.lp-rst:hover{background:#f8fafc;color:#0f172a;border-color:#cbd5e1}
+
+/* ── Mobile ── */
+@media(max-width:600px){
+  .lp-page{padding:12px}
+  .lp-logo{width:58px;height:58px}
+  .lp-hdr h1{font-size:22px}
+  .lp-hdr h1 span{font-size:13px}
+  .lp-hdr p{font-size:12px}
+  .lp-tab{font-size:14px;padding:13px 8px}
+  .lp-badge h3{font-size:15px}
+  .lp-badge p{font-size:13px}
+  .lp-gnum{font-size:12px}
+  .lp-gcmt{font-size:12px}
+  .lp-teams{font-size:17px}
+  .lp-vs{font-size:14px}
+  .lp-note{font-size:13px}
+  .lp-meta span,.lp-meta a{font-size:13px}
+  .lp-meta i{font-size:15px}
+  .lpbw,.lpbl{font-size:15px;padding:14px 10px}
+  .lp-oico{font-size:34px}
+  .lp-opl{font-size:22px}
+  .lp-odet{font-size:13px}
+  .lp-rst{font-size:14px;padding:13px}
+  .lp-chip{font-size:13px}
+}
 </style>
 
+<div class="lp-page">
+
 <div class="lp-hdr">
-  <h1>Loyola Water Polo Club 16U Path Predictor</h1>
-  <p>CCA JOQs 2026 · tap Win or Lose on each game to trace your path</p>
+  <div class="lp-hdr-top">
+    <img src="LWPC-Lion-Logo-v.png" alt="Loyola Water Polo Club" class="lp-logo"/>
+    <div>
+      <div class="lp-chip-head">CCA JOQs 2026</div>
+      <h1>Loyola 16U<span>Path Predictor</span></h1>
+    </div>
+  </div>
+  <p>Tap Win or Lose on each game to trace every possible tournament path.</p>
 </div>
 
 <div class="lp-tabs">
@@ -107,10 +283,9 @@
 
 <div id="ph-win" class="lp-path">
   <div class="lp-badge bw">
-    <div class="lp-bico"><i class="ti ti-check" aria-hidden="true"></i></div>
     <div>
       <h3>Game #11 — Won vs Foothill Red (A)</h3>
-      <p>Friday, May 29 · 2:40 PM · Ventura Aquatic Center</p>
+      <p>Friday, May 29 · 2:40 PM · <a href="https://maps.google.com/?q=901+S+Kimball+Rd+Ventura+CA+93004" target="_blank">Ventura Aquatic Center</a></p>
     </div>
   </div>
   <div class="lp-stk" id="sk-win"></div>
@@ -118,14 +293,15 @@
 
 <div id="ph-lose" class="lp-path">
   <div class="lp-badge bl">
-    <div class="lp-bico"><i class="ti ti-x" aria-hidden="true"></i></div>
     <div>
       <h3>Game #11 — Lost vs Foothill Red (A)</h3>
-      <p>Friday, May 29 · 2:40 PM · Ventura Aquatic Center</p>
+      <p>Friday, May 29 · 2:40 PM · <a href="https://maps.google.com/?q=901+S+Kimball+Rd+Ventura+CA+93004" target="_blank">Ventura Aquatic Center</a></p>
     </div>
   </div>
   <div class="lp-stk" id="sk-lose"></div>
 </div>
+
+</div><!-- /.lp-page -->
 
 <script>
 const T = {
@@ -134,28 +310,46 @@ const T = {
     g28:{id:'g28',game:28,day:'Saturday, May 30',time:'11:00 AM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'1st Pool F',note:'Palos Verdes Black (A) or ORWP',cmt:'Cross 1-2 (as 2nd pool E)',win:'g31',lose:'g32'},
     g30:{id:'g30',game:30,day:'Saturday, May 30',time:'1:00 PM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'2nd Pool F',note:'ORWP, Foothill Black (B), or Rose Bowl White (C)',cmt:'Cross 1-2 (as 1st pool E)',win:'g33',lose:'g34'},
     g31:{id:'g31',game:31,day:'Saturday, May 30',time:'2:00 PM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'Winner #27',note:'1st Pool C or 2nd Pool D area',cmt:'1-8 quarterfinal',win:'rtop4',lose:'r58'},
-    g32:{id:'g32',game:32,day:'Saturday, May 30',time:'3:00 PM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'Loser #28',note:'9-16 bracket',cmt:'9-16 quarterfinal',win:'r912',lose:'r1316'},
+    g32:{id:'g32',game:32,day:'Saturday, May 30',time:'3:00 PM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'Loser #28',note:'9-16 bracket',cmt:'9-16 quarterfinal',win:'g65',lose:'r1316'},
     g33:{id:'g33',game:33,day:'Saturday, May 30',time:'4:00 PM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'Winner #29',note:'1st Pool D or 2nd Pool C area',cmt:'1-8 quarterfinal',win:'rtop4',lose:'r58'},
-    g34:{id:'g34',game:34,day:'Saturday, May 30',time:'5:00 PM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'Loser #29',note:'9-16 bracket',cmt:'9-16 quarterfinal',win:'r912',lose:'r1316'},
+    g34:{id:'g34',game:34,day:'Saturday, May 30',time:'5:00 PM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'Loser #29',note:'9-16 bracket',cmt:'9-16 quarterfinal',win:'g66',lose:'r1316'},
     rtop4:{type:'result',col:'og',ico:'ti-trophy',place:'Top 4 contender!',det:'Sunday round robin at Rio Mesa HS — competing for 1st–4th place'},
     r58:{type:'result',col:'ob',ico:'ti-medal',place:'5th–8th place',det:'Sunday round robin at Camarillo HS'},
-    r912:{type:'result',col:'on',ico:'ti-target',place:'9th–12th place',det:'Sunday semifinals at Rio Mesa HS'},
+    g65:{id:'g65',game:65,day:'Sunday, May 31',time:'11:00 AM',venue:'Rio Mesa High School',maps:'https://maps.google.com/?q=545+Central+Ave+Oxnard+CA+93036',vs:'Winner of Game #44',note:'Pool A, B, G, or H bracket team',cmt:'9-12 semifinal',win:'g69',lose:'g70'},
+    g66:{id:'g66',game:66,day:'Sunday, May 31',time:'12:00 PM',venue:'Rio Mesa High School',maps:'https://maps.google.com/?q=545+Central+Ave+Oxnard+CA+93036',vs:'Winner of Game #42',note:'Pool A, B, G, or H bracket team',cmt:'9-12 semifinal',win:'g69',lose:'g70'},
+    g69:{id:'g69',game:69,day:'Sunday, May 31',time:'3:00 PM',venue:'Rio Mesa High School',maps:'https://maps.google.com/?q=545+Central+Ave+Oxnard+CA+93036',vs:'Winner of other semifinal',note:'Top team from the other 9-12 bracket',cmt:'9th place game',win:'r9',lose:'r10'},
+    g70:{id:'g70',game:70,day:'Sunday, May 31',time:'4:00 PM',venue:'Rio Mesa High School',maps:'https://maps.google.com/?q=545+Central+Ave+Oxnard+CA+93036',vs:'Loser of other semifinal',note:'11th place bracket',cmt:'11th place game',win:'r11',lose:'r12'},
+    r9:{type:'result',col:'og',ico:'ti-trophy',place:'9th place!',det:'Rio Mesa HS — Sunday, May 31'},
+    r10:{type:'result',col:'ob',ico:'ti-medal',place:'10th place',det:'Rio Mesa HS — Sunday, May 31'},
+    r11:{type:'result',col:'on',ico:'ti-target',place:'11th place',det:'Rio Mesa HS — Sunday, May 31'},
+    r12:{type:'result',col:'on',ico:'ti-flag-off',place:'12th place',det:'Rio Mesa HS — Sunday, May 31'},
     r1316:{type:'result',col:'on',ico:'ti-flag-off',place:'13th–16th place',det:'Sunday semifinals at Camarillo HS'}
   }},
   lose:{root:'g35',nodes:{
-    g35:{id:'g35',game:35,day:'Saturday, May 30',time:'8:00 AM',venue:'Rio Mesa High School',maps:'https://maps.google.com/?q=545+Central+Ave+Oxnard+CA+93036',vs:'Trojan Silver (C)',note:'Loser of Game #10 — Rose Bowl Red (A) or Trojan Silver (C)',cmt:'Bracket E opener',win:'g48',lose:'r2531'},
-    g48:{id:'g48',game:48,day:'Saturday, May 30',time:'12:00 PM',venue:'Hueneme High School',maps:'https://maps.google.com/?q=500+W+Bard+Rd+Oxnard+CA+93033',vs:'3rd Pool D (winner #36)',note:'Rose Bowl Black (B) or Titans Water Polo',cmt:'17–24 quarterfinal',win:'g51',lose:'g53'},
-    g51:{id:'g51',game:51,day:'Saturday, May 30',time:'3:00 PM',venue:'Hueneme High School',maps:'https://maps.google.com/?q=500+W+Bard+Rd+Oxnard+CA+93033',vs:'Winner #47',note:"Supreme, Devil's Gate, LV Legends, or PAC Blue",cmt:'17–20 semifinal',win:'g89',lose:'g88'},
-    g53:{id:'g53',game:53,day:'Saturday, May 30',time:'5:00 PM',venue:'Hueneme High School',maps:'https://maps.google.com/?q=500+W+Bard+Rd+Oxnard+CA+93033',vs:'Loser #47',note:'21st–24th bracket',cmt:'21–24 semifinal',win:'r21',lose:'r23'},
-    g88:{id:'g88',game:88,day:'Sunday, May 31',time:'4:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'Loser #52',note:'19th–20th bracket',cmt:'19th place game',win:'r19',lose:'r20'},
+    g35:{id:'g35',game:35,day:'Saturday, May 30',time:'8:00 AM',venue:'Rio Mesa High School',maps:'https://maps.google.com/?q=545+Central+Ave+Oxnard+CA+93036',vs:'Trojan Silver (C)',note:'Loser of Game #10',cmt:'Bracket E opener',win:'g48',lose:'g59'},
+    g48:{id:'g48',game:48,day:'Saturday, May 30',time:'12:00 PM',venue:'Hueneme High School',maps:'https://maps.google.com/?q=500+W+Bard+Rd+Oxnard+CA+93033',vs:'3rd Pool D (winner #36)',note:'Rose Bowl Black (B) or Titans Water Polo',cmt:'17-24 quarterfinal',win:'g51',lose:'g53'},
+    g51:{id:'g51',game:51,day:'Saturday, May 30',time:'3:00 PM',venue:'Hueneme High School',maps:'https://maps.google.com/?q=500+W+Bard+Rd+Oxnard+CA+93033',vs:'Winner #47',note:"Supreme, Devil's Gate, LV Legends, or PAC Blue",cmt:'17-20 semifinal',win:'g89',lose:'g88'},
+    g53:{id:'g53',game:53,day:'Saturday, May 30',time:'5:00 PM',venue:'Hueneme High School',maps:'https://maps.google.com/?q=500+W+Bard+Rd+Oxnard+CA+93033',vs:'Loser #47',note:'21st-24th bracket',cmt:'21-24 semifinal',win:'r21',lose:'r23'},
+    g88:{id:'g88',game:88,day:'Sunday, May 31',time:'4:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'Loser #52',note:'19th-20th bracket',cmt:'19th place game',win:'r19',lose:'r20'},
     g89:{id:'g89',game:89,day:'Sunday, May 31',time:'5:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'Winner #52',note:'South Coast B, Santa Barbara B, PV B, or South Coast C',cmt:'17th place game',win:'r17',lose:'r18'},
+    g59:{id:'g59',game:59,day:'Saturday, May 30',time:'2:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'Loser of Game #36',note:'4th place Pool D — Rose Bowl Black (B), Titans WP, CIU Blue (B), or Santa Barbara A',cmt:'25-31 bracket, round 1',win:'g62w',lose:'g62l'},
+    g62w:{id:'g62w',game:62,day:'Saturday, May 30',time:'6:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'Loser of Game #45',note:'4th place Pool H — PAC Blue, LV Legends, South Coast Red (A), or LB Shore Red (A)',cmt:'25-31 bracket, round 2',win:'g85',lose:'g84'},
+    g62l:{id:'g62l',game:62,day:'Saturday, May 30',time:'6:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'Loser of Game #45',note:'4th place Pool H — PAC Blue, LV Legends, South Coast Red (A), or LB Shore Red (A)',cmt:'25-31 bracket, round 2',win:'g84',lose:'g83'},
+    g85:{id:'g85',game:85,day:'Sunday, May 31',time:'12:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'1st place BB group',note:'Winner of the BB bracket (Pool G, F, C, or B team)',cmt:'25th place game',win:'r25',lose:'r26'},
+    g84:{id:'g84',game:84,day:'Sunday, May 31',time:'10:00 AM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'2nd place BB group',note:'2nd place from the BB bracket (Pool G, F, C, or B team)',cmt:'27th place game',win:'r27',lose:'r28'},
+    g83:{id:'g83',game:83,day:'Sunday, May 31',time:'9:00 AM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'3rd place BB group',note:'3rd place from the BB bracket (Pool G, F, C, or B team)',cmt:'29th place game',win:'r29',lose:'r3031'},
     r17:{type:'result',col:'og',ico:'ti-trophy',place:'17th place!',det:'Best possible finish — Ventura HS, Sunday May 31'},
     r18:{type:'result',col:'ob',ico:'ti-medal',place:'18th place',det:'Ventura HS — Sunday, May 31'},
     r19:{type:'result',col:'on',ico:'ti-target',place:'19th place',det:'Ventura HS — Sunday, May 31'},
     r20:{type:'result',col:'on',ico:'ti-target',place:'20th place',det:'Ventura HS — Sunday, May 31'},
-    r21:{type:'result',col:'on',ico:'ti-flag-off',place:'21st–22nd place',det:'Ventura HS — Sunday, May 31'},
-    r23:{type:'result',col:'or',ico:'ti-flag-off',place:'23rd–24th place',det:'Ventura HS — Sunday, May 31'},
-    r2531:{type:'result',col:'or',ico:'ti-flag-off',place:'25th–31st place',det:'Ventura HS bracket'}
+    r21:{type:'result',col:'on',ico:'ti-flag-off',place:'21st-22nd place',det:'Ventura HS — Sunday, May 31'},
+    r23:{type:'result',col:'or',ico:'ti-flag-off',place:'23rd-24th place',det:'Ventura HS — Sunday, May 31'},
+    r25:{type:'result',col:'og',ico:'ti-trophy',place:'25th place!',det:'Best possible finish in this bracket — Ventura HS, Sunday May 31'},
+    r26:{type:'result',col:'ob',ico:'ti-medal',place:'26th place',det:'Ventura HS — Sunday, May 31'},
+    r27:{type:'result',col:'on',ico:'ti-target',place:'27th place',det:'Ventura HS — Sunday, May 31'},
+    r28:{type:'result',col:'on',ico:'ti-target',place:'28th place',det:'Ventura HS — Sunday, May 31'},
+    r29:{type:'result',col:'on',ico:'ti-flag-off',place:'29th place',det:'Ventura HS — Sunday, May 31'},
+    r3031:{type:'result',col:'or',ico:'ti-flag-off',place:'30th-31st place',det:'Ventura HS — Sunday, May 31'}
   }}
 };
 
@@ -204,21 +398,21 @@ function draw(t){
     if(!n||n.type==='result')continue;
     const dc=r==='win'?'dw':'dl';
     const chip=r==='win'
-      ?'<span class="lp-chip cw"><i class="ti ti-check" aria-hidden="true" style="font-size:12px"></i> won</span>'
-      :'<span class="lp-chip cl"><i class="ti ti-x" aria-hidden="true" style="font-size:12px"></i> lost</span>';
+      ?'<span class="lp-chip cw"><i class="ti ti-check" aria-hidden="true" style="font-size:11px"></i> Won</span>'
+      :'<span class="lp-chip cl"><i class="ti ti-x" aria-hidden="true" style="font-size:11px"></i> Lost</span>';
     h+=`<div class="lp-card ${dc}">${cardTop(n)}${chip}</div>`;
   }
 
   const cur=nodes[s.cur];
   if(!cur){
-    h+='<p style="font-size:13px;color:var(--color-text-secondary);padding:8px 0">Unknown state.</p>';
+    h+='<p style="font-size:13px;color:#64748b;padding:8px 0">Unknown state.</p>';
   } else if(cur.type==='result'){
     h+=`<div class="lp-out ${cur.col} rv">
   <div class="lp-oico"><i class="ti ${cur.ico}" aria-hidden="true"></i></div>
   <div class="lp-opl">${xs(cur.place)}</div>
   <div class="lp-odet">${xs(cur.det)}</div>
 </div>
-<button class="lp-rst" onclick="reset('${t}')"><i class="ti ti-refresh" aria-hidden="true" style="font-size:14px"></i> try another path</button>`;
+<button class="lp-rst" onclick="reset('${t}')"><i class="ti ti-refresh" aria-hidden="true"></i> Try another path</button>`;
   } else {
     h+=`<div class="lp-card ac rv">
   ${cardTop(cur)}
@@ -227,7 +421,7 @@ function draw(t){
     <button class="lpbl" onclick="pick('${t}','${cur.id}','lose')"><i class="ti ti-x" aria-hidden="true"></i> Lose</button>
   </div>
 </div>`;
-    if(s.dec.length>0) h+=`<button class="lp-rst" onclick="reset('${t}')"><i class="ti ti-refresh" aria-hidden="true" style="font-size:14px"></i> reset path</button>`;
+    if(s.dec.length>0) h+=`<button class="lp-rst" onclick="reset('${t}')"><i class="ti ti-refresh" aria-hidden="true"></i> Reset path</button>`;
   }
 
   stk.innerHTML=h;
