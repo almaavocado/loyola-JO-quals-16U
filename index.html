@@ -272,119 +272,79 @@ html,body{margin:0;padding:0;background:#EEF2F8;font-family:'Inter',-apple-syste
   <p>Tap Win or Lose on each game to trace every possible tournament path.</p>
 </div>
 
-<div class="lp-tabs">
-  <button class="lp-tab" id="tb-win" onclick="swTab('win')">
-    <i class="ti ti-trophy" aria-hidden="true"></i> Win vs Foothill A
-  </button>
-  <button class="lp-tab" id="tb-lose" onclick="swTab('lose')">
-    <i class="ti ti-x" aria-hidden="true"></i> Lose vs Foothill A
-  </button>
-</div>
-
-<div id="ph-win" class="lp-path">
-  <div class="lp-badge bw">
-    <div>
-      <h3>Game #11 — Won vs Foothill Red (A)</h3>
-      <p>Friday, May 29 · 2:40 PM · <a href="https://maps.google.com/?q=901+S+Kimball+Rd+Ventura+CA+93004" target="_blank">Ventura Aquatic Center</a></p>
+<!-- Games already played -->
+<div class="lp-stk" style="margin-bottom:14px">
+  <div class="lp-card dl">
+    <div class="lp-ctop"><span class="lp-gnum">Game #11</span><span class="lp-gcmt">Pool E · Friday, May 29</span></div>
+    <div class="lp-teams">Loyola WP Club <span class="lp-vs">vs</span> Foothill Red (A)</div>
+    <div class="lp-note">Ventura Aquatic Center · 2:40 PM</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px">
+      <span class="lp-chip cl"><i class="ti ti-x" aria-hidden="true" style="font-size:11px"></i> Lost · 3–7</span>
+      <span style="font-size:12px;color:#94a3b8">Final</span>
     </div>
   </div>
-  <div class="lp-stk" id="sk-win"></div>
-</div>
-
-<div id="ph-lose" class="lp-path">
-  <div class="lp-badge bl">
-    <div>
-      <h3>Game #11 — Lost vs Foothill Red (A)</h3>
-      <p>Friday, May 29 · 2:40 PM · <a href="https://maps.google.com/?q=901+S+Kimball+Rd+Ventura+CA+93004" target="_blank">Ventura Aquatic Center</a></p>
+  <div class="lp-card dw">
+    <div class="lp-ctop"><span class="lp-gnum">Game #35</span><span class="lp-gcmt">Bracket E · Saturday, May 30</span></div>
+    <div class="lp-teams">Loyola WP Club <span class="lp-vs">vs</span> Trojan Silver (C)</div>
+    <div class="lp-note">Rio Mesa High School · 8:00 AM</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px">
+      <span class="lp-chip cw"><i class="ti ti-check" aria-hidden="true" style="font-size:11px"></i> Won · 11–8</span>
+      <span style="font-size:12px;color:#94a3b8">Final</span>
     </div>
   </div>
-  <div class="lp-stk" id="sk-lose"></div>
 </div>
+
+<!-- Path predictor from Game 48 onward -->
+<div class="lp-stk" id="sk-main"></div>
 
 </div><!-- /.lp-page -->
 
 <script>
-const T = {
-  win:{root:'g14',nodes:{
-    g14:{id:'g14',game:14,day:'Friday, May 29',time:'5:10 PM',venue:'Ventura Aquatic Center (VAC)',maps:'https://maps.google.com/?q=901+S+Kimball+Rd+Ventura+CA+93004',vs:'Winner #10',note:'Rose Bowl Red (A) or Trojan Silver (C)',cmt:'Pool E semifinal',win:'g30',lose:'g28'},
-    g28:{id:'g28',game:28,day:'Saturday, May 30',time:'11:00 AM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'1st Pool F',note:'Palos Verdes Black (A) or ORWP',cmt:'Cross 1-2 (as 2nd pool E)',win:'g31',lose:'g32'},
-    g30:{id:'g30',game:30,day:'Saturday, May 30',time:'1:00 PM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'2nd Pool F',note:'ORWP, Foothill Black (B), or Rose Bowl White (C)',cmt:'Cross 1-2 (as 1st pool E)',win:'g33',lose:'g34'},
-    g31:{id:'g31',game:31,day:'Saturday, May 30',time:'2:00 PM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'Winner #27',note:'1st Pool C or 2nd Pool D area',cmt:'1-8 quarterfinal',win:'rtop4',lose:'r58'},
-    g32:{id:'g32',game:32,day:'Saturday, May 30',time:'3:00 PM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'Loser #28',note:'9-16 bracket',cmt:'9-16 quarterfinal',win:'g65',lose:'g75'},
-    g33:{id:'g33',game:33,day:'Saturday, May 30',time:'4:00 PM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'Winner #29',note:'1st Pool D or 2nd Pool C area',cmt:'1-8 quarterfinal',win:'rtop4',lose:'r58'},
-    g34:{id:'g34',game:34,day:'Saturday, May 30',time:'5:00 PM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'Loser #29',note:'9-16 bracket',cmt:'9-16 quarterfinal',win:'g66',lose:'g76'},
-    rtop4:{type:'result',col:'og',ico:'ti-trophy',place:'Top 4 contender!',det:'Sunday round robin at Rio Mesa HS — competing for 1st–4th place'},
-    r58:{type:'result',col:'ob',ico:'ti-medal',place:'5th–8th place',det:'Sunday round robin at Camarillo HS'},
-    g65:{id:'g65',game:65,day:'Sunday, May 31',time:'11:00 AM',venue:'Rio Mesa High School',maps:'https://maps.google.com/?q=545+Central+Ave+Oxnard+CA+93036',vs:'Winner of Game #44',note:'Pool A, B, G, or H bracket team',cmt:'9-12 semifinal',win:'g69',lose:'g70'},
-    g66:{id:'g66',game:66,day:'Sunday, May 31',time:'12:00 PM',venue:'Rio Mesa High School',maps:'https://maps.google.com/?q=545+Central+Ave+Oxnard+CA+93036',vs:'Winner of Game #42',note:'Pool A, B, G, or H bracket team',cmt:'9-12 semifinal',win:'g69',lose:'g70'},
-    g69:{id:'g69',game:69,day:'Sunday, May 31',time:'3:00 PM',venue:'Rio Mesa High School',maps:'https://maps.google.com/?q=545+Central+Ave+Oxnard+CA+93036',vs:'Winner of other semifinal',note:'Top team from the other 9-12 bracket',cmt:'9th place game',win:'r9',lose:'r10'},
-    g70:{id:'g70',game:70,day:'Sunday, May 31',time:'4:00 PM',venue:'Rio Mesa High School',maps:'https://maps.google.com/?q=545+Central+Ave+Oxnard+CA+93036',vs:'Loser of other semifinal',note:'11th place bracket',cmt:'11th place game',win:'r11',lose:'r12'},
-    r9:{type:'result',col:'og',ico:'ti-trophy',place:'9th place!',det:'Rio Mesa HS — Sunday, May 31'},
-    r10:{type:'result',col:'ob',ico:'ti-medal',place:'10th place',det:'Rio Mesa HS — Sunday, May 31'},
-    r11:{type:'result',col:'on',ico:'ti-target',place:'11th place',det:'Rio Mesa HS — Sunday, May 31'},
-    r12:{type:'result',col:'on',ico:'ti-flag-off',place:'12th place',det:'Rio Mesa HS — Sunday, May 31'},
-    g75:{id:'g75',game:75,day:'Sunday, May 31',time:'11:00 AM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'Loser #44',note:'13-16 semifinal',cmt:'13-16 semifinal',win:'g79',lose:'g80'},
-    g76:{id:'g76',game:76,day:'Sunday, May 31',time:'12:00 PM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'Loser #42',note:'13-16 semifinal',cmt:'13-16 semifinal',win:'g79',lose:'g80'},
-    g79:{id:'g79',game:79,day:'Sunday, May 31',time:'3:00 PM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'Winner of other 13-16 semifinal',note:'13th place game',cmt:'13th place game',win:'r13',lose:'r14'},
-    g80:{id:'g80',game:80,day:'Sunday, May 31',time:'4:00 PM',venue:'Camarillo High School',maps:'https://maps.google.com/?q=4660+Mission+Oaks+Blvd+Camarillo+CA+93012',vs:'Loser of other 13-16 semifinal',note:'15th place game',cmt:'15th place game',win:'r15',lose:'r16'},
-    r13:{type:'result',col:'og',ico:'ti-trophy',place:'13th place!',det:'Camarillo HS — Sunday, May 31'},
-    r14:{type:'result',col:'ob',ico:'ti-medal',place:'14th place',det:'Camarillo HS — Sunday, May 31'},
-    r15:{type:'result',col:'on',ico:'ti-target',place:'15th place',det:'Camarillo HS — Sunday, May 31'},
-    r16:{type:'result',col:'on',ico:'ti-flag-off',place:'16th place',det:'Camarillo HS — Sunday, May 31'}
-  }},
-  lose:{root:'g35',nodes:{
-    g35:{id:'g35',game:35,day:'Saturday, May 30',time:'8:00 AM',venue:'Rio Mesa High School',maps:'https://maps.google.com/?q=545+Central+Ave+Oxnard+CA+93036',vs:'Trojan Silver (C)',note:'Loser of Game #10',cmt:'Bracket E opener',win:'g48',lose:'g59'},
-    g48:{id:'g48',game:48,day:'Saturday, May 30',time:'12:00 PM',venue:'Hueneme High School',maps:'https://maps.google.com/?q=500+W+Bard+Rd+Oxnard+CA+93033',vs:'3rd Pool D (winner #36)',note:'Rose Bowl Black (B) or Titans Water Polo',cmt:'17-24 quarterfinal',win:'g51',lose:'g53'},
-    g51:{id:'g51',game:51,day:'Saturday, May 30',time:'3:00 PM',venue:'Hueneme High School',maps:'https://maps.google.com/?q=500+W+Bard+Rd+Oxnard+CA+93033',vs:'Winner #47',note:"Supreme, Devil's Gate, LV Legends, or PAC Blue",cmt:'17-20 semifinal',win:'g89',lose:'g88'},
-    g53:{id:'g53',game:53,day:'Saturday, May 30',time:'5:00 PM',venue:'Hueneme High School',maps:'https://maps.google.com/?q=500+W+Bard+Rd+Oxnard+CA+93033',vs:'Loser #47',note:'21st-24th bracket',cmt:'21-24 semifinal',win:'g87',lose:'g86'},
-    g88:{id:'g88',game:88,day:'Sunday, May 31',time:'4:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'Loser #52',note:'19th-20th bracket',cmt:'19th place game',win:'r19',lose:'r20'},
-    g89:{id:'g89',game:89,day:'Sunday, May 31',time:'5:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'Winner #52',note:'South Coast B, Santa Barbara B, PV B, or South Coast C',cmt:'17th place game',win:'r17',lose:'r18'},
-    g86:{id:'g86',game:86,day:'Sunday, May 31',time:'2:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'Loser #54',note:'23rd place bracket',cmt:'23rd place game',win:'r23',lose:'r24'},
-    g87:{id:'g87',game:87,day:'Sunday, May 31',time:'3:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'Winner #54',note:'21st place bracket',cmt:'21st place game',win:'r21',lose:'r22'},
-    g59:{id:'g59',game:59,day:'Saturday, May 30',time:'2:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'Loser of Game #36',note:'4th place Pool D — Rose Bowl Black (B), Titans WP, CIU Blue (B), or Santa Barbara A',cmt:'25-31 bracket, round 1',win:'g62w',lose:'g62l'},
-    g62w:{id:'g62w',game:62,day:'Saturday, May 30',time:'6:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'Loser of Game #45',note:'4th place Pool H — PAC Blue, LV Legends, South Coast Red (A), or LB Shore Red (A)',cmt:'25-31 bracket, round 2',win:'g85',lose:'g84'},
-    g62l:{id:'g62l',game:62,day:'Saturday, May 30',time:'6:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'Loser of Game #45',note:'4th place Pool H — PAC Blue, LV Legends, South Coast Red (A), or LB Shore Red (A)',cmt:'25-31 bracket, round 2',win:'g84',lose:'g83'},
-    g85:{id:'g85',game:85,day:'Sunday, May 31',time:'12:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'1st place BB group',note:'Winner of the BB bracket (Pool G, F, C, or B team)',cmt:'25th place game',win:'r25',lose:'r26'},
-    g84:{id:'g84',game:84,day:'Sunday, May 31',time:'10:00 AM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'2nd place BB group',note:'2nd place from the BB bracket (Pool G, F, C, or B team)',cmt:'27th place game',win:'r27',lose:'r28'},
-    g83:{id:'g83',game:83,day:'Sunday, May 31',time:'9:00 AM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'3rd place BB group',note:'3rd place from the BB bracket (Pool G, F, C, or B team)',cmt:'29th place game',win:'r29',lose:'r3031'},
-    r17:{type:'result',col:'og',ico:'ti-trophy',place:'17th place!',det:'Best possible finish — Ventura HS, Sunday May 31'},
-    r18:{type:'result',col:'ob',ico:'ti-medal',place:'18th place',det:'Ventura HS — Sunday, May 31'},
-    r19:{type:'result',col:'on',ico:'ti-target',place:'19th place',det:'Ventura HS — Sunday, May 31'},
-    r20:{type:'result',col:'on',ico:'ti-target',place:'20th place',det:'Ventura HS — Sunday, May 31'},
-    r21:{type:'result',col:'og',ico:'ti-trophy',place:'21st place!',det:'Ventura HS — Sunday, May 31'},
-    r22:{type:'result',col:'ob',ico:'ti-medal',place:'22nd place',det:'Ventura HS — Sunday, May 31'},
-    r23:{type:'result',col:'on',ico:'ti-target',place:'23rd place',det:'Ventura HS — Sunday, May 31'},
-    r24:{type:'result',col:'or',ico:'ti-flag-off',place:'24th place',det:'Ventura HS — Sunday, May 31'},
-    r25:{type:'result',col:'og',ico:'ti-trophy',place:'25th place!',det:'Best possible finish in this bracket — Ventura HS, Sunday May 31'},
-    r26:{type:'result',col:'ob',ico:'ti-medal',place:'26th place',det:'Ventura HS — Sunday, May 31'},
-    r27:{type:'result',col:'on',ico:'ti-target',place:'27th place',det:'Ventura HS — Sunday, May 31'},
-    r28:{type:'result',col:'on',ico:'ti-target',place:'28th place',det:'Ventura HS — Sunday, May 31'},
-    r29:{type:'result',col:'on',ico:'ti-flag-off',place:'29th place',det:'Ventura HS — Sunday, May 31'},
-    r3031:{type:'result',col:'or',ico:'ti-flag-off',place:'30th-31st place',det:'Ventura HS — Sunday, May 31'}
-  }}
+const NODES = {
+  g48:{id:'g48',game:48,day:'Saturday, May 30',time:'12:00 PM',venue:'Hueneme High School',maps:'https://maps.google.com/?q=500+W+Bard+Rd+Oxnard+CA+93033',vs:'Rose Bowl Black (B)',note:'3rd place Pool D',cmt:'17-24 quarterfinal',win:'g51',lose:'g53'},
+  g51:{id:'g51',game:51,day:'Saturday, May 30',time:'3:00 PM',venue:'Hueneme High School',maps:'https://maps.google.com/?q=500+W+Bard+Rd+Oxnard+CA+93033',vs:'Winner #47',note:"Devil's Gate or LV Legends",cmt:'17-20 semifinal',win:'g89',lose:'g88'},
+  g53:{id:'g53',game:53,day:'Saturday, May 30',time:'5:00 PM',venue:'Hueneme High School',maps:'https://maps.google.com/?q=500+W+Bard+Rd+Oxnard+CA+93033',vs:'Loser #47',note:"Devil's Gate or LV Legends — loser of Game #47",cmt:'21-24 semifinal',win:'g87',lose:'g86'},
+  g88:{id:'g88',game:88,day:'Sunday, May 31',time:'4:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'Loser #52',note:'Loser of Game #52 — Santa Barbara B / PV Blue / South Coast Blue or Temple City Yellow / Rose Bowl White (C)',cmt:'19th place game',win:'r19',lose:'r20'},
+  g89:{id:'g89',game:89,day:'Sunday, May 31',time:'5:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'Winner #52',note:'Winner of Santa Barbara B or PV Blue / SC Blue vs Temple City Yellow or Rose Bowl White (C)',cmt:'17th place game',win:'r17',lose:'r18'},
+  g86:{id:'g86',game:86,day:'Sunday, May 31',time:'2:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'Loser #54',note:'Loser of Game #54 — loser of Temple City Yellow / Rose Bowl White (C) vs loser of Santa Barbara B / PV Blue or SC Blue',cmt:'23rd place game',win:'r23',lose:'r24'},
+  g87:{id:'g87',game:87,day:'Sunday, May 31',time:'3:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'Winner #54',note:'Winner of Game #54 — loser bracket of Temple City Yellow / Rose Bowl White (C) vs loser bracket of Santa Barbara B / PV Blue or SC Blue',cmt:'21st place game',win:'r21',lose:'r22'},
+  g59:{id:'g59',game:59,day:'Saturday, May 30',time:'2:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'Loser of Game #36',note:'4th place Pool D — Rose Bowl Black (B), Titans WP, CIU Blue (B), or Santa Barbara A',cmt:'25-31 bracket, round 1',win:'g62w',lose:'g62l'},
+  g62w:{id:'g62w',game:62,day:'Saturday, May 30',time:'6:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'Loser of Game #45',note:'4th place Pool H — PAC Blue, LV Legends, South Coast Red (A), or LB Shore Red (A)',cmt:'25-31 bracket, round 2',win:'g85',lose:'g84'},
+  g62l:{id:'g62l',game:62,day:'Saturday, May 30',time:'6:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'Loser of Game #45',note:'4th place Pool H — PAC Blue, LV Legends, South Coast Red (A), or LB Shore Red (A)',cmt:'25-31 bracket, round 2',win:'g84',lose:'g83'},
+  g85:{id:'g85',game:85,day:'Sunday, May 31',time:'12:00 PM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'1st place BB group',note:'Winner of the BB bracket (Pool G, F, C, or B team)',cmt:'25th place game',win:'r25',lose:'r26'},
+  g84:{id:'g84',game:84,day:'Sunday, May 31',time:'10:00 AM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'2nd place BB group',note:'2nd place from the BB bracket (Pool G, F, C, or B team)',cmt:'27th place game',win:'r27',lose:'r28'},
+  g83:{id:'g83',game:83,day:'Sunday, May 31',time:'9:00 AM',venue:'Ventura High School',maps:'https://maps.google.com/?q=2+N+Catalina+St+Ventura+CA+93001',vs:'3rd place BB group',note:'3rd place from the BB bracket (Pool G, F, C, or B team)',cmt:'29th place game',win:'r29',lose:'r3031'},
+  r17:{type:'result',col:'og',ico:'ti-trophy',place:'17th place!',det:'Best possible finish — Ventura HS, Sunday May 31'},
+  r18:{type:'result',col:'ob',ico:'ti-medal',place:'18th place',det:'Ventura HS — Sunday, May 31'},
+  r19:{type:'result',col:'on',ico:'ti-target',place:'19th place',det:'Ventura HS — Sunday, May 31'},
+  r20:{type:'result',col:'on',ico:'ti-target',place:'20th place',det:'Ventura HS — Sunday, May 31'},
+  r21:{type:'result',col:'og',ico:'ti-trophy',place:'21st place!',det:'Ventura HS — Sunday, May 31'},
+  r22:{type:'result',col:'ob',ico:'ti-medal',place:'22nd place',det:'Ventura HS — Sunday, May 31'},
+  r23:{type:'result',col:'on',ico:'ti-target',place:'23rd place',det:'Ventura HS — Sunday, May 31'},
+  r24:{type:'result',col:'or',ico:'ti-flag-off',place:'24th place',det:'Ventura HS — Sunday, May 31'},
+  r25:{type:'result',col:'og',ico:'ti-trophy',place:'25th place!',det:'Best possible finish in this bracket — Ventura HS, Sunday May 31'},
+  r26:{type:'result',col:'ob',ico:'ti-medal',place:'26th place',det:'Ventura HS — Sunday, May 31'},
+  r27:{type:'result',col:'on',ico:'ti-target',place:'27th place',det:'Ventura HS — Sunday, May 31'},
+  r28:{type:'result',col:'on',ico:'ti-target',place:'28th place',det:'Ventura HS — Sunday, May 31'},
+  r29:{type:'result',col:'on',ico:'ti-flag-off',place:'29th place',det:'Ventura HS — Sunday, May 31'},
+  r3031:{type:'result',col:'or',ico:'ti-flag-off',place:'30th-31st place',det:'Ventura HS — Sunday, May 31'}
 };
 
-const S = {win:{cur:'g14',dec:[]},lose:{cur:'g35',dec:[]}};
+const ROOT = 'g48';
+const S = {cur:ROOT, dec:[]};
 
-function swTab(t) {
-  ['win','lose'].forEach(k=>{
-    document.getElementById('tb-'+k).className='lp-tab'+(k===t?(k==='win'?' aw':' al'):'');
-    document.getElementById('ph-'+k).className='lp-path'+(k===t?' on':'');
-  });
-}
-
-function pick(t,id,r){
-  const n=T[t].nodes[id];
-  S[t].dec.push({id,r});
-  S[t].cur=n[r];
-  draw(t);
+function pick(id,r){
+  const n=NODES[id];
+  S.dec.push({id,r});
+  S.cur=n[r];
+  draw();
   setTimeout(()=>{
-    const el=document.getElementById('sk-'+t).lastElementChild;
+    const el=document.getElementById('sk-main').lastElementChild;
     el&&el.scrollIntoView({behavior:'smooth',block:'nearest'});
   },120);
 }
 
-function reset(t){S[t].dec=[];S[t].cur=T[t].root;draw(t);}
+function reset(){S.dec=[];S.cur=ROOT;draw();}
 
 function xs(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');}
 
@@ -398,14 +358,12 @@ function cardTop(n){
 </div>`;
 }
 
-function draw(t){
-  const stk=document.getElementById('sk-'+t);
-  const nodes=T[t].nodes;
-  const s=S[t];
+function draw(){
+  const stk=document.getElementById('sk-main');
   let h='';
 
-  for(const {id,r} of s.dec){
-    const n=nodes[id];
+  for(const {id,r} of S.dec){
+    const n=NODES[id];
     if(!n||n.type==='result')continue;
     const dc=r==='win'?'dw':'dl';
     const chip=r==='win'
@@ -414,7 +372,7 @@ function draw(t){
     h+=`<div class="lp-card ${dc}">${cardTop(n)}${chip}</div>`;
   }
 
-  const cur=nodes[s.cur];
+  const cur=NODES[S.cur];
   if(!cur){
     h+='<p style="font-size:13px;color:#64748b;padding:8px 0">Unknown state.</p>';
   } else if(cur.type==='result'){
@@ -423,22 +381,20 @@ function draw(t){
   <div class="lp-opl">${xs(cur.place)}</div>
   <div class="lp-odet">${xs(cur.det)}</div>
 </div>
-<button class="lp-rst" onclick="reset('${t}')"><i class="ti ti-refresh" aria-hidden="true"></i> Try another path</button>`;
+<button class="lp-rst" onclick="reset()"><i class="ti ti-refresh" aria-hidden="true"></i> Try another path</button>`;
   } else {
     h+=`<div class="lp-card ac rv">
   ${cardTop(cur)}
   <div class="lp-btns">
-    <button class="lpbw" onclick="pick('${t}','${cur.id}','win')"><i class="ti ti-trophy" aria-hidden="true"></i> Win</button>
-    <button class="lpbl" onclick="pick('${t}','${cur.id}','lose')"><i class="ti ti-x" aria-hidden="true"></i> Lose</button>
+    <button class="lpbw" onclick="pick('${cur.id}','win')"><i class="ti ti-trophy" aria-hidden="true"></i> Win</button>
+    <button class="lpbl" onclick="pick('${cur.id}','lose')"><i class="ti ti-x" aria-hidden="true"></i> Lose</button>
   </div>
 </div>`;
-    if(s.dec.length>0) h+=`<button class="lp-rst" onclick="reset('${t}')"><i class="ti ti-refresh" aria-hidden="true"></i> Reset path</button>`;
+    if(S.dec.length>0) h+=`<button class="lp-rst" onclick="reset()"><i class="ti ti-refresh" aria-hidden="true"></i> Reset path</button>`;
   }
 
   stk.innerHTML=h;
 }
 
-swTab('win');
-draw('win');
-draw('lose');
+draw();
 </script>
